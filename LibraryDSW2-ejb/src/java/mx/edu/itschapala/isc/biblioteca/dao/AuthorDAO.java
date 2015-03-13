@@ -5,6 +5,7 @@
  */
 package mx.edu.itschapala.isc.biblioteca.dao;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,5 +28,7 @@ public class AuthorDAO extends AbstractDAO<Author> implements AuthorDAOLocal {
     public AuthorDAO() {
         super(Author.class);
     }
+    
+    
     
 }
