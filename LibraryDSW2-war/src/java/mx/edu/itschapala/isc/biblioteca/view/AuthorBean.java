@@ -24,15 +24,28 @@ public class AuthorBean {
     private AuthorBLLocal authorBL;
 
     private List<Author> list ;
-   
+    private Author author;
     public AuthorBean() {
+        author=new Author();
     }
 
     public List<Author> getList() {
         list = authorBL.retrieveCollectionList();
         return list;
     }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
     
-    
+    public String processPetition()
+    {
+        authorBL.register(author);
+        return "MainMenu";
+    }
     
 }
