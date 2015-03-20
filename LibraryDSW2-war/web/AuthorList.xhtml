@@ -47,6 +47,17 @@
                             <h:outputText value="LastName"/>
                         </f:facet>
                         <h:outputText value="#{item.lastName}"/>
+                        
+                    </h:column>
+                    <h:column>
+                        <h:commandButton action="EditAuthor" value="Modify" actionListener="#{authorBean.renewModify}">
+                            <f:setPropertyActionListener target="#{authorBean.author}" value="#{item}"/>
+                        </h:commandButton>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton action="ConfirmAuthorDelete" value="Remove" actionListener="#{authorBean.renewDelete}">
+                            <f:setPropertyActionListener target="#{authorBean.author}" value="#{item}"/>
+                        </h:commandButton>
                     </h:column>
                 </h:dataTable>
             </h:form>

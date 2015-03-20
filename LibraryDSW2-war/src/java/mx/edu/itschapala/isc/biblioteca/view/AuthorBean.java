@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 import mx.edu.itschapala.isc.biblioteca.bl.AuthorBLLocal;
 import mx.edu.itschapala.isc.biblioteca.model.Author;
 
@@ -25,6 +26,8 @@ public class AuthorBean {
 
     private List<Author> list ;
     private Author author;
+    private Action1 action;
+    
     public AuthorBean() {
         author=new Author();
     }
@@ -42,9 +45,39 @@ public class AuthorBean {
         this.author = author;
     }
     
+    public void renew(ActionEvent ae)
+    {
+        author = new Author();
+        action=action.NEW;
+    }
+    
+    public void renewModify(ActionEvent ae)
+    {
+        action=action.MODIFY;
+    }
+    
+    public void renewDelete(ActionEvent ae)
+    {
+        action=action.DELETE;
+    }
+    
     public String processPetition()
     {
-        authorBL.register(author);
+        switch(action)
+        {
+            case NEW:
+                authorBL.register(author);
+                return "MainMenu";
+                
+            case MODIFY:
+                authorBL.modify(author);
+                author = new Author();
+                return "AuthorList";
+            case DELETE:
+                authorBL.remove(author);
+                author = new Author();
+                return "AuthorList";
+        }
         return "MainMenu";
     }
     
